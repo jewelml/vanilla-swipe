@@ -1,5 +1,5 @@
 {
-  "name": "vanilla-swipe",
+  "name": "@jewel_ml/vanilla-swipe",
   "version": "2.4.1",
   "description": "Tiny vanilla JS library to detect swipe direction.",
   "main": "lib/index.js",

@@ -2,6 +2,12 @@ import { State, ConstructorProps } from './types';
 import * as Utils from './utils';
 export * from './types';
 
+const isVerticalTouchMoveDetected = (deltaX: number, deltaY: number, gap = 32) => {
+  const vertical = Math.abs(deltaY)
+  const horizontal = Math.abs(deltaX)
+  return vertical > horizontal && horizontal < gap
+}
+
 export default class VanillaSwipe {
   state: State;
   props: ConstructorProps;
@@ -149,7 +155,7 @@ export default class VanillaSwipe {
     });
     const { delta, preventDefaultTouchmoveEvent, onSwipeStart, onSwiping } = this.props;
 
-    if (e.cancelable && preventDefaultTouchmoveEvent) e.preventDefault();
+    if (e.cancelable && preventDefaultTouchmoveEvent && !isVerticalTouchMoveDetected(deltaX, deltaY)) e.preventDefault();
 
     if (absX < Number(delta) && absY < Number(delta) && !isSwiping) return;
 
